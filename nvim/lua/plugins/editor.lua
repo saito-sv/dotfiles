@@ -163,7 +163,7 @@ return {
 			})
 			opts.pickers = {
 				diagnostics = {
-					theme = "ivy",
+					theme = "rose-pine",
 					initial_mode = "normal",
 					layout_config = {
 						preview_cutoff = 9999,
@@ -203,6 +203,30 @@ return {
 			telescope.setup(opts)
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
+		end,
+	},
+	{
+		"ggandor/leap.nvim",
+		enabled = true,
+		keys = {
+			{ "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+			{ "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+			{ "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+		},
+		config = function(_, opts)
+			local leap = require("leap")
+			local colors = require("rose-pine.palette")
+			for k, v in pairs(opts) do
+				leap.opts[k] = v
+			end
+			vim.api.nvim_set_hl(0, "LeapLabelPrimary", { fg = colors.gold, bg = colors.base, bold = true })
+			vim.api.nvim_set_hl(0, "LeapMatch", { fg = colors.love, bg = colors.base })
+			vim.api.nvim_set_hl(0, "LeapLabelSecondary", { fg = colors.love, bg = colors.base })
+			vim.api.nvim_set_hl(0, "LeapBackdrop", { fg = colors.muted })
+
+			leap.add_default_mappings(true)
+			vim.keymap.del({ "x", "o" }, "x")
+			vim.keymap.del({ "x", "o" }, "X")
 		end,
 	},
 }

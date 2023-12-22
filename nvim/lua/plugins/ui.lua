@@ -96,7 +96,7 @@ return {
 		opts = {
 			options = {
 				-- globalstatus = false,
-				theme = "tokyonight",
+				theme = "rose-pine",
 			},
 		},
 	},
@@ -104,16 +104,15 @@ return {
 	-- filename
 	{
 		"b0o/incline.nvim",
-		dependencies = { "folke/tokyonight.nvim" },
 		event = "BufReadPre",
 		priority = 1200,
 		config = function()
-			local colors = require("tokyonight.colors").setup()
+			local colors = require("rose-pine.palette")
 			require("incline").setup({
 				highlight = {
 					groups = {
-						InclineNormal = { guibg = colors.purple, guifg = colors.blue },
-						InclineNormalNC = { guifg = colors.blue6, guibg = colors.blue0 },
+						InclineNormal = { guibg = colors.base, guifg = colors.love },
+						InclineNormalNC = { guifg = colors.base, guibg = colors.love },
 					},
 				},
 				window = { margin = { vertical = 0, horizontal = 1 } },
@@ -151,12 +150,15 @@ return {
 		event = "VimEnter",
 		opts = function(_, opts)
 			local logo = [[
-        ██████╗ ███████╗██╗   ██╗ █████╗ ███████╗██╗     ██╗███████╗███████╗
-        ██╔══██╗██╔════╝██║   ██║██╔══██╗██╔════╝██║     ██║██╔════╝██╔════╝
-        ██║  ██║█████╗  ██║   ██║███████║███████╗██║     ██║█████╗  █████╗  
-        ██║  ██║██╔══╝  ╚██╗ ██╔╝██╔══██║╚════██║██║     ██║██╔══╝  ██╔══╝  
-        ██████╔╝███████╗ ╚████╔╝ ██║  ██║███████║███████╗██║██║     ███████╗
-        ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝     ╚══════╝
+        
+███████╗ █████╗ ██╗████████╗ ██████╗ 
+██╔════╝██╔══██╗██║╚══██╔══╝██╔═══██╗
+███████╗███████║██║   ██║   ██║   ██║
+╚════██║██╔══██║██║   ██║   ██║   ██║
+███████║██║  ██║██║   ██║   ╚██████╔╝
+╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝ 
+                                     
+ 
       ]]
 
 			logo = string.rep("\n", 8) .. logo .. "\n\n"
