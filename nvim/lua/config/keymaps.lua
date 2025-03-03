@@ -1,6 +1,6 @@
-local discipline = require("craftzdog.discipline")
-
-discipline.cowboy()
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
 
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
@@ -48,9 +48,5 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
-	vim.diagnostic.goto_next()
+  vim.diagnostic.goto_next()
 end, opts)
-
-keymap.set("n", "<leader>r", function()
-	require("craftzdog.utils").replaceHexWithHSL()
-end)
