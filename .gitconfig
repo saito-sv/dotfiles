@@ -1,0 +1,116 @@
+# This is Git's per-user configuration file.
+
+#-----------------------------------------------
+# User identity information
+#-----------------------------------------------
+[user]
+    # Your personal identity used in commit messages
+    name = "your name"
+    email = "your email"
+
+#-----------------------------------------------
+# Repository initialization preferences
+#-----------------------------------------------
+[init]
+    # Sets the default branch name to 'main' instead of 'master' when initializing new repositories
+    defaultBranch = main
+
+#-----------------------------------------------
+# Branch display preferences
+#-----------------------------------------------
+[branch]
+    # Sorts branches by most recently committed to (newest first)
+    sort = -committerdate
+
+#-----------------------------------------------
+# Core Git functionality
+#-----------------------------------------------
+[core]
+    # Specifies a global gitignore file located in your home directory
+    excludesfile = ~/.gitignore
+    # Sets Neovim as your default text editor for Git operations
+    editor = nvim
+    # Ensures Git treats file names as case-sensitive
+    ignorecase = false
+
+#-----------------------------------------------
+# Push behavior
+#-----------------------------------------------
+[push]
+    # Only pushes the current branch to its upstream branch
+    default = simple
+
+#-----------------------------------------------
+# Color settings (improves readability)
+#-----------------------------------------------
+[color]
+    # Enables color output for various Git commands
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+    ui = auto
+
+#-----------------------------------------------
+# Useful aliases (command shortcuts)
+#-----------------------------------------------
+[alias]
+    # Interactive file staging using peco (requires peco installed)
+    a = "!git status --short | peco | awk '{print $2}' | xargs git add"
+    # Common shorthand aliases
+    d = diff
+    co = checkout
+    ci = commit
+    ca = commit -a
+    # Push to the current branch on the origin remote
+    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+    # Pull from the current branch on the origin remote
+    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+    st = status
+    br = branch
+    ba = branch -a
+    # List merged branches (can be safely deleted)
+    bm = branch --merged
+    # List non-merged branches (keep these)
+    bn = branch --no-merged
+    # Interactive diff selector using peco
+    df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+    # Pretty formatted history with graph visualization
+    hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
+    # Long detailed log with file changes
+    llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
+    # Show object type
+    type = cat-file -t
+    # Display object content
+    dump = cat-file -p
+    # Search commit content and show diff
+    find = "!f() { git log --pretty=format:\"%h %cd [%cn] %s%d\" --date=relative -S'pretty' -S\"$@\" | peco | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
+    # Open all conflicted files in Vim during a merge
+    edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+    # Stage all conflicted files after resolving conflicts
+    add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+
+#-----------------------------------------------
+# Diff and merge tool configurations
+#-----------------------------------------------
+[diff]
+    # Sets Neovim's diff mode as the default diff tool
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    # Command to run Neovim in diff mode
+    cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+    path =
+[mergetool "nvimdiff"]
+    # Command to run Neovim for 3-way merge
+    cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+
+#-----------------------------------------------
+# Git LFS (Large File Storage) configuration
+#-----------------------------------------------
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    required = true
+    process = git-lfs filter-process
