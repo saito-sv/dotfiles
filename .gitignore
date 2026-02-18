@@ -1,0 +1,4 @@
+.DS_Store
+kitty/current-theme.conf
+kitty/light-theme.auto.conf
+nvim/lazy-lock.json

@@ -17,9 +17,6 @@ keymap.set("n", "dw", 'vb"_d')
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
--- Save with root permission (not working for now)
---vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
-
 -- Disable continuations
 keymap.set("n", "<Leader>o", "o<Esc>^Da", opts)
 keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
@@ -50,3 +47,13 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()
 end, opts)
+
+-- Center cursor when using Page Up/Down
+vim.keymap.set("n", "<PageUp>", "<C-u>zz", { desc = "Page up and center" })
+vim.keymap.set("n", "<PageDown>", "<C-d>zz", { desc = "Page down and center" })
+
+-- Move lines up and down
+keymap.set("n", "<A-j>", ":m .+1<CR>==", opts)
+keymap.set("n", "<A-k>", ":m .-2<CR>==", opts)
+keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
+keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
