@@ -1,7 +1,7 @@
 return {
   {
-    "Mofiqul/dracula.nvim",
-    name = "dracula",
+    "rose-pine/neovim",
+    name = "rose-pine",
     priority = 1000,
     lazy = false,
     config = function()
@@ -9,11 +9,11 @@ return {
       require("config.themes").setup()
     end,
   },
-  -- Set LazyVim to use dracula as default
+  -- Set LazyVim to use rose-pine as default
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "dracula",
+      colorscheme = "rose-pine",
     },
   },
   {
