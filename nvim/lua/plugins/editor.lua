@@ -4,7 +4,7 @@ return {
     opts = {
       -- Global settings
       winopts = {
-        split = "belowright 10new",
+        split = "belowright 30new",
         preview = {
           hidden = "hidden",
         },
