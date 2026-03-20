@@ -1,6 +1,8 @@
 ## Dotfiles
 
-These dotfiles are structured for the XDG base directory spec on both macOS and Ubuntu 24.04.
+Personal dotfiles for macOS and Ubuntu 24.04.
+
+---
 
 ### Install
 
@@ -8,14 +10,85 @@ These dotfiles are structured for the XDG base directory spec on both macOS and 
 git clone git@github.com:saito-sv/dotfiles.git ~/dotfiles
 ```
 
-### Symlinks (macOS + Ubuntu)
+---
+
+### Dependencies
+
+#### Zsh + Zap
+
+```sh
+# Ubuntu only
+sudo apt install zsh -y && chsh -s $(which zsh)
+
+# Install Zap (plugin manager)
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+```
+
+#### CLI tools
+
+```sh
+# macOS
+brew install fd fzf tree mise lazygit neovim nvm go podman
+
+# Ubuntu
+sudo apt install fd-find fzf tree lazygit neovim golang podman -y
+sudo ln -s $(which fdfind) /usr/local/bin/fd
+
+# mise (if not installed via brew/apt)
+curl https://mise.run | sh
+
+# nvm (if not installed via brew)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+```
+
+#### Kitty
+
+```sh
+# macOS
+brew install --cask kitty
+
+# Ubuntu
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+```
+
+Requires **Fira Code** and **Symbols Nerd Font Mono**:
+
+```sh
+# macOS
+brew install --cask font-fira-code font-symbols-only-nerd-font
+
+# Ubuntu
+sudo apt install fonts-firacode -y
+# Symbols Nerd Font: https://www.nerdfonts.com/font-downloads
+```
+
+---
+
+### Symlinks
 
 ```sh
 ln -sfn ~/dotfiles/kitty ~/.config/kitty
 ln -sfn ~/dotfiles/nvim ~/.config/nvim
+ln -sfn ~/dotfiles/zsh/.zshrc ~/.zshrc
 ```
 
-### Notes
+**Linux only:**
+```sh
+ln -sfn ~/dotfiles/cos-switch ~/cos-switch
+```
 
-- Auto-generated files (e.g. Neovim lockfiles, Kitty auto theme, macOS artifacts) are ignored.
-- Kitty theme is set via `kitty/kitty.conf` and includes `dracula-theme.conf`.
+---
+
+### cos-switch (Linux only)
+
+App switcher/launcher that uses `cos-cli` to focus a running app by `app_id`, launching it if not already open. Configured apps: zen, kitty, slack, firefox, obsidian.
+
+```sh
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Build
+cd ~/cos-switch && cargo build --release
+```
+
+Binary: `~/cos-switch/target/release/cos-switch`
