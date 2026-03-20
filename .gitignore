@@ -2,3 +2,4 @@
 kitty/current-theme.conf
 kitty/light-theme.auto.conf
 nvim/lazy-lock.json
+cos-switch/target/
