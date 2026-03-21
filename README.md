@@ -72,11 +72,6 @@ ln -sfn ~/dotfiles/nvim ~/.config/nvim
 ln -sfn ~/dotfiles/zsh/.zshrc ~/.zshrc
 ```
 
-**Linux only:**
-```sh
-ln -sfn ~/dotfiles/cos-switch ~/cos-switch
-```
-
 ---
 
 ### cos-switch (Linux only)
@@ -87,8 +82,6 @@ App switcher/launcher that uses `cos-cli` to focus a running app by `app_id`, la
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Build
-cd ~/cos-switch && cargo build --release
+# Build and install to ~/.local/bin
+cd ~/dotfiles/cos-switch && make install
 ```
-
-Binary: `~/cos-switch/target/release/cos-switch`
