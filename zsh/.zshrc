@@ -14,7 +14,6 @@ alias vim=nvim
 alias lg=lazygit
 alias k=kubectl
 alias g=gcloud
-alias docker=podman
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

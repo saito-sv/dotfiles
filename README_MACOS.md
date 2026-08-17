@@ -17,6 +17,7 @@ git clone git@github.com:saito-sv/dotfiles.git ~/dotfiles
 ### ✅ Symlinks Created
 - `~/.config/kitty` → `~/dotfiles/kitty`
 - `~/.config/nvim` → `~/dotfiles/nvim`
+- `~/.hammerspoon` → `~/dotfiles/hammerspoon`
 - `~/.zshrc` → `~/dotfiles/zsh/.zshrc`
 
 ### ✅ Kitty Terminal
