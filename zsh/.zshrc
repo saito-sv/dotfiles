@@ -5,7 +5,7 @@ plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "agkozak/zsh-z"
-plug "loxaf/fzf-tab"
+plug "Aloxaf/fzf-tab"
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
@@ -17,7 +17,11 @@ alias g=gcloud
 alias docker=podman
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(/home/marlon/.local/bin/mise activate zsh)"
+
+# mise - works on both Linux and macOS
+if command -v mise &> /dev/null; then
+    eval "$(mise activate zsh)"
+fi
 
 fcd() {
     local dir
