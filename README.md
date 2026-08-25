@@ -1,6 +1,6 @@
 ## Dotfiles
 
-Personal dotfiles for macOS and Ubuntu 24.04.
+Personal dotfiles for **macOS** and **Ubuntu 24.04** — covering Zsh, Neovim, Kitty, and more.
 
 ---
 
