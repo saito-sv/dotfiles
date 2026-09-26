@@ -1,16 +1,16 @@
+-- Python tweaks on top of LazyVim's `lang.python` extra (pyright + ruff, venv-selector, dap-python, neotest).
 return {
-  "linux-cultist/venv-selector.nvim",
-  dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
-  opts = {
-    -- Your options go here
-    -- name = "venv",
-    -- auto_refresh = false
+  -- venv-selector is configured by the extra (loads on ft=python, `<leader>cv`).
+  -- The last selected venv per project is re-activated automatically from cache.
+  {
+    "linux-cultist/venv-selector.nvim",
+    keys = {
+      { "<leader>vs", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" },
+    },
   },
-  event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
-  keys = {
-    -- Keymap to open VenvSelector to pick a venv.
-    { "<leader>vs", "<cmd>VenvSelect<cr>" },
-    -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-    { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
+  -- nvim-dap-python is set up with `debugpy-adapter`, which the extra doesn't install.
+  {
+    "mason-org/mason.nvim",
+    opts = { ensure_installed = { "debugpy" } },
   },
 }
