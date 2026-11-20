@@ -1,7 +1,7 @@
 return {
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "sainnhe/everforest",
+    name = "everforest",
     priority = 1000,
     lazy = false,
     config = function()
@@ -9,11 +9,11 @@ return {
       require("config.themes").setup()
     end,
   },
-  -- Set LazyVim to use rose-pine as default
+  -- Set LazyVim to use everforest as default
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      colorscheme = "everforest",
     },
   },
   {

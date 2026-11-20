@@ -4,6 +4,7 @@ return {
     opts = {
       ensure_installed = {
         "bash",
+        "gotmpl",
         "html",
         "javascript",
         "json",

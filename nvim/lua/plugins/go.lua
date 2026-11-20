@@ -6,6 +6,7 @@ return {
         gopls = {
           settings = {
             gopls = {
+              templateExtensions = { "tmpl", "gotmpl" },
               analyses = {
                 -- Disable noisy style/comment analyzers
                 ST1000 = false, -- package comment style
