@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     opts = function(_, opts)
       -- Rust: ' is mostly lifetimes (&'a, <'a), so don't auto-pair it
       vim.api.nvim_create_autocmd("FileType", {
